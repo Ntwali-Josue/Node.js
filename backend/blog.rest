@@ -1,0 +1,23 @@
+GET http://localhost:4000/blogs
+
+###
+
+POST http://localhost:4500/blogs/create
+Content-Type: application/json
+
+{
+    "author" : "Josh",
+    "content": "Article 8"
+
+}
+###
+DELETE http://localhost:4000/blogs/5f3cc82ccf31fcc5b71d17b3
+
+###
+PATCH http://localhost:4000/blogs/5f3ccfa62bb4f8e88a4d5da2
+Content-Type: application/json
+
+
+{
+    "author": "James"
+}
