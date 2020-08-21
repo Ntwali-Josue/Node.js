@@ -1,38 +1,47 @@
-// // // the function which reverse a number 
+const express = require('express');
+const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+const User = require('./user');
+const blogModel = require('./user');
 
-// function reverse(num){
-//     let x = num.toString().split('').reverse().join('');
-//     return x;
-// }
+const app = express();
+app.use(express.json());
 
-// let result = reverse('04690');
-// console.log(result)
+mongoose.connect('mongodb://localhost/node_db',{
+    useUnifiedTopology: true,
+    useNewUrlParser:true});
+
+app.use(User);
+
+app.get('/get', (req, res) => {
+    res.send('Hello,Welcome to my blog!')
+});
 
 
-//working with node.js and my server
+app.get('/blogs', async (req, res) => {
+    const blogs = await blogModel.find({});
 
-var express = require('express')
-var app = express()
+    try {
+      res.send(blogs);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  });
+  
+  app.post('/post', async (req, res) => {
+      const article = new blogModel(req.body);
+    
+      try {
+        await article.save();
+        res.send(article);
+      } catch (err) {
+        res.status(500).send(err);
+      }
+  });
+  
+  module.exports = app
+  
 
-app.get('/get', function(req,res){
-    // console.log(req)
-    res.send('Hello Josh')
-})
-
-app.listen(5000,function(){
-    console.log('localhost: 5000')
-})
-
-// import express from 'express';
- 
-// const app = express();
- 
-// app.get('/', (req, res) => {
-//     res.send('Hello World!');
-// });
- 
-// app.listen(5000, () =>
-//   console.log('localhost: 5000'),
-// );
-
-const{MongoClient}
+app.listen(5000, () =>{
+    console.log('Server is running...')
+});
