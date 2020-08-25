@@ -2,21 +2,15 @@ require("dotenv").config();
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const bcrypt =require('bcrypt')
-const jwt = require('jsonwebtoken')
+const bcrypt =require('bcrypt');
+const jwt = require('jsonwebtoken');
+// const connectDB = require('../connection');
 
-const User = require('../models/user');
+// connectDB();
 
-// router.get('/', async(req,res)=>{
-//     try{
-//         const blog = await User.find()
-//         res.json(User)
-//     } catch(err){
-//         res.status(500).json({
-//             message: err.message
-//         })
-//     }
-// })
+const Port = process.env.port || 4500
+
+const User = require('../models/user'); 
 
 router.post('/signup', (req,res, next)=>{
     User.find({username: req.body.email})

@@ -2,14 +2,15 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const jwt = require('jsonwebtoken')
+const URI = "mongodb+srv://dbJosh:dbJosh@cluster0.s5ejl.mongodb.net/dbJosh?retryWrites=true&w=majority"
 
-mongoose.connect('mongodb://localhost/blogs', {
+
+mongoose.connect(URI, {
     useUnifiedTopology: true,
     useCreateIndex: true,
-    useNewUrlParser:true});
-const db =mongoose.connection
-db.on('error', (error) => console.error(error))
-db.once('open', () => console.log('Database Connected'))
+    useNewUrlParser:true
+}).then(() => console.log('Database Connected'))
+    .catch((err) => console.log(err));
 
 app.use(express.json())
 

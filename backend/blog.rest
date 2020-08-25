@@ -21,3 +21,13 @@ Content-Type: application/json
 {
     "author": "James"
 }
+
+###
+POST PATCH http://localhost:4500/user/signup
+Content-Type: application/json
+
+{
+    "username": "josh",
+    "email":"josh@gmail.com",
+    "password": "1234"
+}

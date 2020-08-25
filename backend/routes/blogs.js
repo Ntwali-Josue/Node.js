@@ -14,10 +14,10 @@ router.get('/', async(req,res)=>{
     }
 })
 
-// //getting article
-// router.get('/:id',getblogs,(req,res) =>{
-//     res.json(res.blog)
-// })
+//getting article
+router.get('/:id',getblogs,(req,res) =>{
+    res.json(res.blog)
+})
 
 //creating article
 router.post('/create',async (req,res) =>{
