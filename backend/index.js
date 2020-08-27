@@ -4,7 +4,6 @@ const app = express()
 const jwt = require('jsonwebtoken')
 const URI = "mongodb+srv://dbJosh:dbJosh@cluster0.s5ejl.mongodb.net/dbJosh?retryWrites=true&w=majority"
 
-
 mongoose.connect(URI, {
     useUnifiedTopology: true,
     useCreateIndex: true,
